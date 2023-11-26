@@ -7,6 +7,6 @@ import partytown from "@astrojs/partytown";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'http://localhost:4321/',
+  site: 'https://github.com/GromoJT/gromojt.github.io',
   integrations: [mdx(), sitemap(), react(), partytown()]
 });
