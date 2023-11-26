@@ -1,0 +1,63 @@
+---
+import { getCollection , type CollectionEntry } from "astro:content";
+import MainLayout from "../../layouts/MainLayout.astro"
+import {slugify,formatBlogPosts} from "../../js/utils";
+
+import PostCard from '../../components/PostCard.astro';
+
+
+import type { GetStaticPaths } from "astro";
+export const getStaticPaths = (() => {
+    
+    return [
+        {
+            params:{category: slugify("Reference Docs")},
+            props:{name:"Reference Docs"},
+        },
+        {
+            params:{category: slugify("General")},
+            props:{name:"General"},
+        },
+        {
+            params:{category: slugify("Astro")},
+            props:{name:"Astro"},
+        },
+        {
+            params:{category: slugify("CSS")},
+            props:{name:"CSS"},
+        },
+
+    ];
+}) satisfies GetStaticPaths;
+
+const { category } = Astro.params;
+const { name } = Astro.props;
+
+const allPosts = await getCollection("blog");
+const formattedPosts:CollectionEntry<"blog">[] = formatBlogPosts(allPosts,{
+});
+
+const catPosts = formattedPosts.filter(
+    (post) => slugify(post.data.category) === category);
+
+
+---
+<MainLayout title={name}>
+	<section class="container" aria-label={`Posts about ${name}`}>
+		<h1 class="h1">Posts about <span>{name}</span></h1>
+		<div class="post-container">
+			{
+				catPosts.map((post) => 
+				<PostCard 
+					data={post.data} 
+					url={post.slug} 
+					tagType="h2"
+				/> 
+				)
+			}
+		</div>
+	</section>
+	<!-- <PostCard data={allPosts[0].data} url={allPosts[0].url} tagType="h2"/> -->
+
+
+</MainLayout>

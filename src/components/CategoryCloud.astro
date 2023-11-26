@@ -1,0 +1,36 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+//utils imports
+import { formatBlogPosts, slugify } from '../js/utils';
+
+const allPosts = await getCollection("blog");
+const formattedPosts:CollectionEntry<"blog">[] = formatBlogPosts(allPosts);
+const allCategories = formattedPosts.map(
+    (cat)=> cat.data.category).flat();
+
+//console.log(allCategories);
+
+const processedCats = allCategories.reduce((acc,category) => {
+    //check if category exist in the acc
+    const value = acc[category] || 0;
+
+    return {
+        ...acc,
+        [category]: value + 1
+    }
+},{})
+
+//console.log(processedCats)
+const {showCount} = Astro.props;
+
+---
+
+<ul class="categories">
+    {
+        Object.entries(processedCats).map(([key,val]) => (
+            <li>
+                <a class="badge" href={`/category/${slugify(key)}`}>{key} {showCount && `(${val})`}</a>
+            </li>
+        ))
+    }
+</ul>

@@ -1,0 +1,66 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+//component import
+import MainLayout from "../../layouts/MainLayout.astro";
+import PostHeader from "../../components/PostHeader.astro"
+import CategoryCloud from "../../components/CategoryCloud.astro";
+
+//utils imports
+import { formatBlogPosts, slugify } from '../../js/utils';
+import RelatedPosts from "../../components/RelatedPosts.astro";
+
+export const getStaticPaths = (async () => {
+    const allPosts = await getCollection("blog");
+    const formattedPosts:CollectionEntry<"blog">[] = formatBlogPosts(allPosts);
+    return formattedPosts.map((post)=> ({
+        params:{ slug: post.slug},
+        props:{
+            post,
+        }
+    }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+    post: CollectionEntry<"blog">,
+}
+
+const {post} = Astro.props;
+const {title,description,date,category,author,image} = post.data;
+
+const {Content} = await post.render();
+
+
+const allPosts = await getCollection("blog");
+const formattedPosts = formatBlogPosts(allPosts,{
+    sortByDate:false,
+});
+
+
+const relatedPosts = formattedPosts.filter((post)=> post.data.category === category &&post.data.title !== title).slice(0,3);
+
+//{title} {description} image={image} {post.data} 
+---
+
+<MainLayout title={title} description={description} image={image}>
+    <PostHeader {category} {title} {author} {date} {image}/>
+    <div class="post-content">
+        <div class="content">
+            <Content />
+        </div>
+        <div class="sidebar">
+            <aside class="container" aria-label="Blog Categories">
+                <h2 class="h3">Tagi</h2>
+                <CategoryCloud showCount={true}/>
+            </aside>
+            {
+                relatedPosts.length > 0 && (
+                    <aside class="container" aria-label="Related posts">
+                        <h2 class="h3">Powiazane wpisy</h2>
+                        <RelatedPosts relatedPosts={relatedPosts}/>
+                    </aside>
+                )
+            }
+        </div>
+    </div>
+</MainLayout>

@@ -1,0 +1,58 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+//component imports
+import MainLayout from '../layouts/MainLayout.astro';
+import PostCard from '../components/PostCard.astro';
+
+//utils imports
+import { formatBlogPosts } from '../js/utils';
+import { Image } from 'astro:assets';
+
+//assets
+import banner from '../assets/homepage/images/banner.png'
+
+const allPosts = await getCollection("blog");
+const formattedPosts: CollectionEntry<"blog">[] = formatBlogPosts(allPosts,{
+	limit:3
+});
+---
+
+<MainLayout title='My blog'>
+	<section class="container hero-section" aria-label="Hero section">
+		<h1 class="h1">Cześć!</h1>
+		<hr class="line">
+		<p>
+			<h3 class="h3">
+				Ta strona ma na celu pomóc w odwiecznej walce z prokarastynacją i słomianym zapałem.
+				<br>
+				<span>"Małymi krokami ku lepszemu..."</span>
+			</h3>
+		</p>
+		<hr class="line">
+	</section>
+
+
+
+
+	<section class="container" aria-label="New Blog Posts">
+		<h2 class="h2">Ostatnie wpisy</h2>
+		<div class="post-container">
+			{
+				formattedPosts.map((post) => 
+				<PostCard 
+					data={post.data} 
+					url={post.slug} 
+					tagType="h3"
+				/> 
+				)
+			}
+		</div>
+	</section>
+
+</MainLayout>
+
+<style>
+
+
+
+</style>

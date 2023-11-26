@@ -1,0 +1,56 @@
+---
+import { getCollection } from 'astro:content';
+//component imports
+import Link from '../components/Link.astro';
+import MainLayout from '../layouts/MainLayout.astro';
+import PostCard from '../components/PostCard.astro';
+
+//utils imports
+import { formatBlogPosts } from '../js/utils';
+import { Image } from 'astro:assets';
+
+const allPosts = await getCollection("blog");
+const formattedPosts = formatBlogPosts(allPosts,{
+	limit:3
+});
+---
+
+<MainLayout title='My blog' robots={true}>
+	<section class="container about" aria-label="About Me">
+		<h2 class="h2">
+			Tu kiedyś zostaną dodane informacje o twórcach...
+		</h2>
+
+		<div class="content">
+			<h1 class="h1">O tym blogu:</h1>
+			<p>
+				Celem tego bloga jest stworzenie naszego własnego skrawka internetu. Miejsca w kórym będziemy mogli na spokojnie i włąsnym tępem zapoznawać śwait z tym co będziemy w stanie z siebie wykrzesać.
+			</p>
+			<Link 
+				href='mailto:janek.j113@gmail.com'
+				style='primary'
+				text='Napisz do jednego z nas'	
+			/>
+		</div>
+	</section>
+	<section class="container" aria-label="New Blog Posts">
+		<h1 class="h1">Ostatnie wpisy</h1>
+		<div class="post-container">
+			{
+				formattedPosts.map((post) => 
+				<PostCard 
+					data={post.data} 
+					url={post.slug} 
+					tagType="h2"
+				/> 
+				)
+			}
+		</div>
+	</section>
+</MainLayout>
+
+<style>
+
+
+
+</style>
