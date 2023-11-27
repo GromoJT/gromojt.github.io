@@ -1,8 +1,8 @@
 {
-    "title": "My Astro Blog",
-    "description": "My musings about the Astro framework",
+    "title": "Blog",
+    "description": "Szansa na coś co zadziała",
     "image": {
-      "src": "/images/image-default.jpg",
-      "alt": "My Astro Blog"
+      "src": "/images/obietnica.png",
+      "alt": "Obietnica"
     }
   }

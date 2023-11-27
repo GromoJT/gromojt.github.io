@@ -15,11 +15,11 @@ export function GET(context) {
     description: 'Blog do walki z niczym',
     // Pull in your project "site" from the endpoint context
     // https://docs.astro.build/en/reference/api-reference/#contextsite
-    site: context.site,
+    site: 'https://gromojt.github.io/',
     // Array of `<item>`s in output xml
     // See "Generating items" section for examples using content collections and glob imports
     items: posts.map((post) => ({
-      link:`/blog/${post.slug}`,
+      link:`/gromojt.github.io/blog/${post.slug}`,
       title: post.data.title,
       pubDate:post.data.date,
       description:post.data.description,
