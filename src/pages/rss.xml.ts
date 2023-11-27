@@ -19,7 +19,7 @@ export function GET(context) {
     // Array of `<item>`s in output xml
     // See "Generating items" section for examples using content collections and glob imports
     items: posts.map((post) => ({
-      link:`/gromojt.github.io/blog/${post.slug}`,
+      link:`/blog/${post.slug}`,
       title: post.data.title,
       pubDate:post.data.date,
       description:post.data.description,

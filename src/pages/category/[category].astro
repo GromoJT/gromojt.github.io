@@ -11,20 +11,8 @@ export const getStaticPaths = (() => {
     
     return [
         {
-            params:{category: slugify("Reference Docs")},
+            params:{category: slugify("Za kulisami")},
             props:{name:"Reference Docs"},
-        },
-        {
-            params:{category: slugify("General")},
-            props:{name:"General"},
-        },
-        {
-            params:{category: slugify("Astro")},
-            props:{name:"Astro"},
-        },
-        {
-            params:{category: slugify("CSS")},
-            props:{name:"CSS"},
         },
 
     ];
@@ -43,8 +31,8 @@ const catPosts = formattedPosts.filter(
 
 ---
 <MainLayout title={name}>
-	<section class="container" aria-label={`Posts about ${name}`}>
-		<h1 class="h1">Posts about <span>{name}</span></h1>
+	<section class="container" aria-label={`Posty o ${name}`}>
+		<h1 class="h1">Posty o <span>{name}</span></h1>
 		<div class="post-container">
 			{
 				catPosts.map((post) => 
