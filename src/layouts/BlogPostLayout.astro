@@ -10,7 +10,7 @@ import { formatBlogPosts, slugify } from '../js/utils';
 import RelatedPosts from "../components/RelatedPosts.astro";
 
 const {data} = Astro.props;
-const {title,description,date,category,author,image} = data;
+const {title,description,date,category,author,cover} = data;
 
 const allPosts = await getCollection("blog");
 const formattedPosts = formatBlogPosts(allPosts,{
@@ -26,24 +26,26 @@ const relatedPosts = formattedPosts.filter((post)=>
 ---
 
 <MainLayout {title} {description} image={data.image} {data} robots={data.robots}>
-    <PostHeader {category} {title} {author} {date} {image}/>
+    
     <div class="post-content">
+        <PostHeader {category} {title} {author} {date} {cover}/>
         <div class="content">
             <slot/>
         </div>
-        <div class="sidebar">
-            <aside class="container" aria-label="Blog Categories">
-                <h2 class="h3">Blog Categories</h2>
-                <CategoryCloud showCount={true}/>
+        
+    </div>
+    <div class="sidebar">
+        <aside class="container" aria-label="Blog Categories">
+            <h2 class="h3">Blog Categories</h2>
+            <CategoryCloud showCount={true}/>
+        </aside>
+        {
+        relatedPosts.length > 0 && (
+            <aside class="container" aria-label="Related posts">
+                <h2 class="h3">Related Posts</h2>
+                <RelatedPosts relatedPosts={relatedPosts}/>
             </aside>
-            {
-            relatedPosts.length > 0 && (
-                <aside class="container" aria-label="Related posts">
-                    <h2 class="h3">Related Posts</h2>
-                    <RelatedPosts relatedPosts={relatedPosts}/>
-                </aside>
-            )
-            }
-        </div>
+        )
+        }
     </div>
 </MainLayout>

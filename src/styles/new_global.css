@@ -19,6 +19,7 @@ picture {
   width: 100%;
   max-width: 100%;
   display: block;
+  height:max-content
 }
 
 p,
@@ -167,7 +168,7 @@ button {
 
 /* custom media query breakpoints */
 @custom-media --sm (width >=480px);
-@custom-media --md (width >=768px);
+@custom-media --md (width >=926px);
 @custom-media --lg (width >=1201px);
 @custom-media --xl (width >=1440px);
 
@@ -443,6 +444,10 @@ button {
   @media (--lg) {
     grid-template-columns: 1fr 1fr 1fr;
   }
+
+  @media (--xl) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }
 
 .badge {
@@ -497,6 +502,17 @@ button {
   & .content {
     display: grid;
     gap: var(--space-xs);
+
+    & svg {
+      margin: 0rem 0.1rem 0rem 0.1rem;
+      display: inline-flex;
+      padding: 0;
+      vertical-align: middle;
+    }
+    & p {
+      font-size: 1rem;
+    }
+  
   }
 }
 
@@ -508,19 +524,28 @@ header {
   gap: var(--space-sm);
   text-align: center;
 
-  & .container {
+  & .title-container {
     display: grid;
-    place-items: center;
-    gap: var(--space-sm);
-    text-align: center;
-    margin-block: var(--space-lg) var(--space-sm);
+    place-items: left;
+    /* gap: var(--space-sm); */
+    text-align: left;
+    width:100%;
+    /* margin-block: var(--space-lg) var(--space-sm); */
+
+  }
+  & p svg{
+    margin: 0rem 1rem 0rem 1rem;
+    display: inline-flex;
+    padding: 0;
+    vertical-align: middle;
   }
 }
 
 .post-content {
   display: grid;
   justify-content: center;
-  padding: var(--space-md);
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
   margin-block: var(--space-lg);
   margin-inline: auto;
   width: 100%;
@@ -551,7 +576,7 @@ header {
 
       display: grid;
       gap: var(--space-2xs);
-      padding: 0;
+      padding: 1rem 0rem 1rem 0rem;
 
       @media (--sm) {
         flex: 1 1 40%;

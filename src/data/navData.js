@@ -4,7 +4,7 @@ const navData = [
         path: "/blog",
     },
     {
-        name: "O nas",
+        name: "O mnie",
         path:"/about",
     },
 ]

@@ -2,21 +2,22 @@
 import { defineCollection, z } from 'astro:content';
 // 2. Define your collection(s)
 const blogCollection = defineCollection({ 
-    schema:z.object({
+    schema: ({image}) => z.object({
         title: z.string().max(50,"Maksymalnie 50 znaków"),
         date: z.date(),
         author: z.enum([
             "Tomasz 'GromoTJ' Jankiewicz",
             "Adtrina Rościszewski",
         ]),
-        image: z.object({
-            src: z.string(),
+        cover: z.object({
+            img: image(),
             alt: z.string(),
         }),
         description: z.string().max(250,"Max 250 znaków"),
         draft: z.boolean().optional().default(false),
         category: z.enum([
-            "Za kulisami"
+            "Za kulisami",
+            "DIY"
         ]),
     }),
     

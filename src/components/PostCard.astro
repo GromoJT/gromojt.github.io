@@ -5,8 +5,9 @@ import { Image } from "astro:assets";
 import Link from "./Link.astro"
 
 const {data,url, tagType} = Astro.props;
-const {title,date,author,description,category,image} = data;
+const {title,date,author,description,category,cover} = data;
 const Tag = tagType;
+import Icon from "astro-icon";
 ---
 
 
@@ -16,8 +17,8 @@ const Tag = tagType;
         </small>
         <a href={`/blog/${url}`} aria-hidden="true" tabindex="-1">
             <Image 
-            src={image.src} 
-            alt={image.alt}
+            src={cover.img} 
+            alt={cover.alt}
             width="400"
             height="250"
             format="webp"
@@ -28,8 +29,8 @@ const Tag = tagType;
         </a>
         <div class="content">            
             <div>
-                <Tag class="h3"><a href={`blog/${url}`}>{title}</a></Tag>
-                <small>Od <a href={`/author/${slugify(author)}/`}>{author}</a> • {formatDate(date)}</small>
+                <Tag><a href={`blog/${url}`}>{title}</a></Tag>
+                <small> <Icon name="ph:pencil-fill" width={16}/> <a href={`/author/${slugify(author)}/`}>{author}</a> • {formatDate(date)}</small>
             </div>
             <p>{description}</p>
             <Link 

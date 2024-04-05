@@ -26,7 +26,7 @@ interface Props {
 }
 
 const {post} = Astro.props;
-const {title,description,date,category,author,image} = post.data;
+const {title,description,date,category,author,cover} = post.data;
 
 const {Content} = await post.render();
 
@@ -39,28 +39,30 @@ const formattedPosts = formatBlogPosts(allPosts,{
 
 const relatedPosts = formattedPosts.filter((post)=> post.data.category === category &&post.data.title !== title).slice(0,3);
 
-//{title} {description} image={image} {post.data} 
+
 ---
 
-<MainLayout title={title} description={description} image={image}>
-    <PostHeader {category} {title} {author} {date} {image}/>
+<MainLayout title={title} description={description} >
+    
     <div class="post-content">
         <div class="content">
+            <PostHeader {category} {title} {author} {date} {cover}/>
             <Content />
         </div>
         <div class="sidebar">
-            <aside class="container" aria-label="Blog Categories">
-                <h2 class="h3">Tagi</h2>
-                <CategoryCloud showCount={true}/>
-            </aside>
-            {
-                relatedPosts.length > 0 && (
-                    <aside class="container" aria-label="Related posts">
-                        <h2 class="h3">Powiazane wpisy</h2>
-                        <RelatedPosts relatedPosts={relatedPosts}/>
-                    </aside>
-                )
-            }
-        </div>
+        <aside class="container" aria-label="Blog Categories">
+            <h2 class="h3">Tagi</h2>
+            <CategoryCloud showCount={true}/>
+        </aside>
+        {
+            relatedPosts.length > 0 && (
+                <aside class="container" aria-label="Related posts">
+                    <h2 class="h3">Powiazane wpisy</h2>
+                    <RelatedPosts relatedPosts={relatedPosts}/>
+                </aside>
+            )
+        }
     </div>
+    </div>
+    
 </MainLayout>

@@ -18,30 +18,30 @@ const formattedPosts = formatBlogPosts(allPosts,{
 <MainLayout title='My blog' robots={true}>
 	<section class="container about" aria-label="About Me">
 		<h2 class="h2">
-			Tu kiedyś zostaną dodane informacje o twórcach...
+			Tu kiedyś zostaną dodane informacje o twórcy...
 		</h2>
 
 		<div class="content">
 			<h1 class="h1">O tym blogu:</h1>
 			<p>
-				Celem tego bloga jest stworzenie naszego własnego skrawka internetu. Miejsca w kórym będziemy mogli na spokojnie i włąsnym tępem zapoznawać śwait z tym co będziemy w stanie z siebie wykrzesać.
+				Celem tego bloga jest stworzenie własnego skrawka internetu. Miejsca w kórym będdę mogł na spokojnie i włąsnym tempem zapoznawać śwait z tym co będę w stanie z siebie wykrzesać.
 			</p>
 			<Link 
 				href='mailto:janek.j113@gmail.com'
 				style='primary'
-				text='Napisz do jednego z nas'	
+				text='Napisz do mnie'	
 			/>
 		</div>
 	</section>
 	<section class="container" aria-label="New Blog Posts">
-		<h1 class="h1">Ostatnie wpisy</h1>
+		<h2 class="h2">Ostatnie wpisy</h2>
 		<div class="post-container">
 			{
 				formattedPosts.map((post) => 
 				<PostCard 
 					data={post.data} 
 					url={post.slug} 
-					tagType="h2"
+					tagType="h3"
 				/> 
 				)
 			}

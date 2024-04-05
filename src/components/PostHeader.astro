@@ -1,39 +1,40 @@
 ---
+// @ts-nocheck
 import { slugify, formatDate } from "../js/utils";
-import { Image } from "astro:assets";
+import { Picture} from "astro:assets";
 
 interface Props{
     category:string;
     title:string;
     author:string;
     date:Date;
-    image:{
-        src?:string;
-        alt?:string;
-    };
+    cover: {};
+
 
 }
 
-const {category,title,author,date,image} = Astro.props;
+
+const {category,title,author,date,cover} = Astro.props;
+
+import Icon from "astro-icon";
+//<Icon name="pen"/>
 ---
 
 <header>
-    <div class="container">
+    <div class="title-container">
+        
+        <h1 class="h2">{title}</h1>
         <small>
             <a href={`/category/${slugify(category)}/`} class="badge">{category}</a> 
         </small>
-        <h1 class="h2">{title}</h1>
-        <p>autorstwa <a href={`/author/${slugify(author)}/`}>{author}</a> • {formatDate(date)}</p>
+        <p><Icon name="ph:pencil-fill" width={27}/><a href={`/author/${slugify(author)}/`}>{author}</a> • {formatDate(date)}</p>
+       
     </div>
-    <Image 
-        src={image.src} 
-        alt={image.alt}
-        width="1200"
-        height="600"
-        format="webp"
-        decoding="async"
-        loading="lazy"
+    <Picture 
+        src={cover.img} 
+        alt={cover.alt}
+        formats={['avif', 'webp']}
+        aspect-ratio={16/9}
         class="hero-image"
-        quality={80}
         >
 </header>

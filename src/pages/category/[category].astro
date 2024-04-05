@@ -14,6 +14,10 @@ export const getStaticPaths = (() => {
             params:{category: slugify("Za kulisami")},
             props:{name:"Za kulisami"},
         },
+		{
+            params:{category: slugify("DIY")},
+            props:{name:"DIY"},
+        },
 
     ];
 }) satisfies GetStaticPaths;
