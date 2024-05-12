@@ -1,5 +1,20 @@
 const navData = [
     {
+        name: "Projekty",
+        type:"dropdown",
+        elements:[
+            {
+                name: "GameDev",
+                path: "/gamedev",
+            },
+            {
+                name: "Programiki",
+                path: "/small-programs",
+            },
+        ],
+        
+    },
+    {
         name: "Blogi",
         path: "/blog",
     },

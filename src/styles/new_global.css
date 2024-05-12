@@ -154,7 +154,7 @@ h6 {
   }
 }
 
-button {
+/* button {
   cursor: pointer;
   font-size: var(--fs-sm);
   width: var(--space-md);
@@ -164,7 +164,7 @@ button {
   border: none;
   background-color: hsl(var(--bkg));
   box-shadow: var(--shadow-md);
-}
+} */
 
 /* custom media query breakpoints */
 @custom-media --sm (width >=480px);
@@ -355,6 +355,21 @@ button {
   padding-inline: var(--space-md);
 }
 
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown-content {
+  background-color: hsl(var(--muted));
+  top:100px;
+  display:none;
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
 .logomark {
   display: grid;
   place-items: center;
@@ -366,7 +381,12 @@ button {
   gap: var(--space-sm);
   justify-content: center;
 }
-
+.show{
+  display:block !important;
+}
+.hide{
+  display:none;
+}
 /* footer */
 
 :where(footer) {
@@ -665,12 +685,9 @@ header {
 
 
 .hero-section{
-  margin-top:2rem;
   display:flex !important;
   flex-direction: column;
-  text-align:center;
-  align-items: center;
-
+  white-space:nowrap;
   & p, h3{
     line-height:2.5rem;
   }
@@ -680,12 +697,27 @@ header {
   & h1{
     margin-bottom:10px;
   }
+
+  @media(--lg){
+    flex-direction: row;
+  }
 }
 
 .line{
-  width:100% !important;
   margin:1rem;
-  margin: 1rem;
+
+}
+
+.imagePart{
+  width:70%;
+  margin: auto;
+  padding:1em;
+  display: flex;
+  align-items:center;
+  justify-content:center;
+  @media(--lg){
+    width:50%;
+  }
 }
 
 .mainBanner{

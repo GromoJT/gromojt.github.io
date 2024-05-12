@@ -1,24 +1,29 @@
 ---
 //library imports
 import { Icon } from "astro-icon";
-
+import ToMaszCoMasz_Logo from "../assets/homepage/images/ToMaszCoMasz_Logo.png"
 //components import
 import Link from "./Link.astro";
-
+import DropDown from "./DropDown.astro"
 //data imports
 import navData from "../data/navData";
+import { Image, getImage } from "astro:assets";
+const LogoImage = await getImage({src:ToMaszCoMasz_Logo,format:'png'})
 ---
 
 <nav aria-label="Primary">
     <div class="navbar">
         
         <a href="/" class="logomark" aria-label="Go home">
-            <Icon name="logomark" width="30"/>
+            <Image src={ToMaszCoMasz_Logo}  width="80" height="80" alt="Logo"/>
         </a>
         
         <ul>
             {
                 navData.map((item) => (
+                    item.type=="dropdown" ? 
+                    <DropDown text="Projekty" elements={item.elements}/>
+                    :
                     <Link 
                         href={item.path} 
                         text={item.name} 

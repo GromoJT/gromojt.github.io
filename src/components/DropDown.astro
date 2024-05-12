@@ -1,0 +1,56 @@
+---
+
+import Link from './Link.astro';
+interface Props{
+    text: string;
+    elements:any;
+    classes?: string;
+}
+const {
+    text,
+    elements,
+    classes,
+    ...rest
+ } = Astro.props as Props;
+
+import DropDownArrow from '../icons/downArrow.svg'
+---
+<>
+<button id="navDropDown" class="link primary dropdownBtn">
+{text}
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32">
+	<path fill="white" d="M8.037 11.166L14.5 22.36c.825 1.43 2.175 1.43 3 0l6.463-11.195c.826-1.43.15-2.598-1.5-2.598H9.537c-1.65 0-2.326 1.17-1.5 2.6z" />
+</svg>
+</button>
+<div id="dropContent" class="dropdown-content">
+    {
+        elements.map( (e) => (
+        <Link 
+            href={e.path} 
+            text={e.name} 
+            style="primary" 
+            isFilled={false}
+            borderVisible={false}
+            data-navLink
+            />
+        ))
+    }
+</div>
+</>
+<script>
+    const btn = document.getElementById("navDropDown")
+
+
+    const dropContent = document.getElementById("dropContent")
+
+    btn.addEventListener('click',() => {
+        dropContent.classList.toggle("show");
+    })
+
+    window.onclick = (e) =>{
+        if(!e.target.matches(".link")){
+            dropContent.classList.remove("show");
+        }
+    }
+    
+</script>

@@ -354,10 +354,14 @@ button {
   padding-inline: var(--space-md);
 }
 
+
+
 .logomark {
   display: grid;
   place-items: center;
   padding: var(--space-2xs);
+  height:30px !important;
+  width:30px !important;
 }
 
 [aria-label="Blog pages"] {

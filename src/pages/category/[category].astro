@@ -18,6 +18,15 @@ export const getStaticPaths = (() => {
             params:{category: slugify("DIY")},
             props:{name:"DIY"},
         },
+		{
+            params:{category: slugify("Unity")},
+            props:{name:"Unity"},
+        },
+		{
+            params:{category: slugify("Godot")},
+            props:{name:"Godot"},
+        },
+
 
     ];
 }) satisfies GetStaticPaths;
@@ -25,12 +34,17 @@ export const getStaticPaths = (() => {
 const { category } = Astro.params;
 const { name } = Astro.props;
 
-const allPosts = await getCollection("blog");
-const formattedPosts:CollectionEntry<"blog">[] = formatBlogPosts(allPosts,{
+const allBlogPosts = await getCollection("blog");
+const formattedBlogPosts:CollectionEntry<"blog">[] = formatBlogPosts(allBlogPosts,{
 });
 
-const catPosts = formattedPosts.filter(
-    (post) => slugify(post.data.category) === category);
+const allGameDevPosts = await getCollection("gameDev");
+const formattedGameDevPosts:CollectionEntry<"gameDev">[] = formatBlogPosts(allGameDevPosts,{
+});
+
+const catPosts = [...formattedBlogPosts, ...formattedGameDevPosts]
+    .filter(post => slugify(post.data.category) === category);
+
 
 
 ---

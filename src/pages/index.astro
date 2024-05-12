@@ -7,7 +7,7 @@ import PostCard from '../components/PostCard.astro';
 //utils imports
 import { formatBlogPosts } from '../js/utils';
 import { Image } from 'astro:assets';
-
+import { Picture } from 'astro:assets';
 //assets
 import banner from '../assets/homepage/images/banner.png'
 
@@ -17,18 +17,26 @@ const formattedPosts: CollectionEntry<"blog">[] = formatBlogPosts(allPosts,{
 });
 ---
 
-<MainLayout title='My blog'>
+<MainLayout title='Strefa Gromu'>
 	<section class="container hero-section" aria-label="Hero section">
-		<h1 class="h1">Cześć!</h1>
-		<hr class="line">
-		<p>
-			<h3 class="h3">
-				Ta strona ma na celu pomóc w odwiecznej walce z prokarastynacją i słomianym zapałem.
-				<br>
-				<span>"Małymi krokami ku lepszemu"</span>
-			</h3>
-		</p>
-		<hr class="line">
+		<div class="infoPart">
+			<h1 class="h1">Witaj w strefie gromu!</h1>
+			<hr class="line">
+			<p>
+				<h3>Znalazłeś się tu ponieważ:</h3>
+					1. Jesteś kimś komu na tyle ufam, aby pokazać to co czasem zadarza mi się zrobić.<br />
+					2. Jseteś potencjalnym pracodawcą któremu podesłałem link do czegoś "ala portfolio".<br />
+					3. Zabłądziłeś w internecie...<br />
+				Niezeleżnie od powodu czuj się zaproszonym do zwiedzanie strony.<br /> Wielu rzeczy tu jeszcze brakuje, ale jest niezerowa szansa że kiedyś je dodam.
+			</p>
+		</div>
+		<div class="imagePart">
+			<Image         
+			src={banner} 
+			alt={"test"}
+			class="hero-image"
+			>
+		</div>
 	</section>
 
 
