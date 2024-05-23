@@ -11,8 +11,13 @@ const {name,url, description} = Astro.props;
 <article class="card">
 
         <h1>{name}</h1>
+        <hr>
         <p>{description}</p>
-        <a href={url}>Zobacz > </a>
+        <Link 
+                href={url}
+                text="Zobacz"
+                style="secondary"
+                />
 
 
 </article>
