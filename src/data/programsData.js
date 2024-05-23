@@ -1,7 +1,7 @@
 const programsData = [
     {
         name: "Bingo",
-        url:"programs/bingo",
+        url:"/bingo",
         description:"Mały program do gry w bingo"
     }
 ]
