@@ -1,7 +1,7 @@
 const programsData = [
     {
         name: "Bingo",
-        url:"/bingo",
+        url:"https://gromojt.github.io/programs/bingo/",
         description:"Mały program do gry w bingo"
     }
 ]
