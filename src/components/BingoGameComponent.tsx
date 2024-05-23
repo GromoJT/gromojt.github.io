@@ -160,6 +160,7 @@ export default function BingoGame(){
 
             
   
+            
 
             switch(selectGameMode){
                 case GameModes.Bingo:
@@ -171,7 +172,7 @@ export default function BingoGame(){
                             }
                             </div>
                             
-                            <button onClick={()=>handleDownload(`MiniBingo-game.json`,handleCreateFile())}>Pobierz JSON</button>
+                            <button onClick={()=>handleDownload(`Bingo-game.json`,handleCreateFile())}>Pobierz JSON</button>
                             
                         </>
 

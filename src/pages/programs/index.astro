@@ -1,0 +1,11 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import ProgramCard from "../../components/ProgramCard.astro";
+import programsData from "../../data/programsData"
+---
+<MainLayout title='Strefa Gromu - programy'>
+    {
+        programsData.map((p)=><ProgramCard name={p.name} url={p.url} description={p.description} />)
+    }
+	
+</MainLayout>

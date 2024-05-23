@@ -1,0 +1,18 @@
+---
+
+//component imports
+import Link from "./Link.astro"
+
+const {name,url, description} = Astro.props;
+
+---
+
+
+<article class="card">
+
+        <h1>{name}</h1>
+        <p>{description}</p>
+        <a href={url}>Zobacz > </a>
+
+
+</article>
