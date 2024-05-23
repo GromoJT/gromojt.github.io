@@ -9,7 +9,7 @@ const navData = [
             },
             {
                 name: "Programiki",
-                path: "/small-programs",
+                path: "/programs",
             },
         ],
         
